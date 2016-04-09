@@ -10,5 +10,8 @@
          :context :expr}
         (fn [result] result)))
 
+(defn test1 []
+  (js/console.log "Test1"))
+
 (defn ^:export main []
-  (eval-str "(js/console.log \"Hello, world!\")"))
+  (eval-str "(test1)"))

@@ -3,11 +3,41 @@
 <head>
   <meta charset="utf-8">
   <title>Fugue</title>
+  <link rel="stylesheet" href="css/main.css">
   <script src="js/main.js"></script>
 </head>
 
 <body>
-  <h1>Hello world</h1>
-  <button onclick="fugue_app.core.main()">Click me!</button>
+  <div id="container">
+    <div class="panel" id="controls">
+      <h1>fugue</h1>
+      <ul>
+        <li>
+          <span id="bars">0</span>.
+          <span id="beats">0</span>.
+          <span id="sixteenths">0</span>
+        </li>
+      </ul>
+      <ul>
+        <li><a id="play">PLAY</a></li>
+        <li><a id="tempo">120.0</a> BPM</li>
+        <li><a id="ts-upper">4</a> / <a id="ts-lower">4</a>
+        <li><a id="tap">TAP TEMPO</a></li>
+        <li>METRONOME <a id="metronome">OFF</a></li>
+      </ul>
+      <ul>
+        <li>VIM BINDINGS <a id="vim">OFF</a></li>
+        <li>LINE NUMBERS <a id="line-numbers">OFF</a></li>
+        <li>THEME <a id="vim">LIGHT</a></li>
+        <li><a id="tutorial">TUTORIAL</a></li>
+      </ul>
+      <ul>
+        <li><a href="/">DOCS</a></href>
+        <li><a href="/">SOURCE</a></href>
+      </ul>
+    </div>
+    <textarea class="panel" id="editor"></textarea>
+    <textarea class="panel" id="repl"></textarea>
+  </div>
 </body>
 </html>
