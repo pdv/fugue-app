@@ -1,14 +1,14 @@
 # fugue-app
 
-A Clojure library designed to ... well, that part is up to you.
+A web/Chrome app to showcase fugue
 
 ## Usage
 
-FIXME
+Open /resources/public/index.html in Chrome
 
 ## License
 
-Copyright © 2016 FIXME
+Copyright © 2016 Philip Del Vecchio
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
