@@ -1,6 +1,7 @@
 (ns fugue-app.core
   (:require [cljs.tools.reader :refer [read-string]]
-            [cljs.js :refer [empty-state eval js-eval]]))
+            [cljs.js :refer [empty-state eval js-eval]]
+            [goog.dom :refer [getElement]]))
 
 (defn eval-str [s]
   (eval (empty-state)
@@ -14,4 +15,9 @@
   (js/console.log "Test1"))
 
 (defn ^:export main []
-  (eval-str "(test1)"))
+  (js/CodeMirror.
+   (getElement "editor")
+   (js-obj
+    "theme" "base16-ocean"
+    "mode" "clojure"
+    "lineNumbers" false)))

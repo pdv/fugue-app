@@ -3,6 +3,12 @@
 <head>
   <meta charset="utf-8">
   <title>Fugue</title>
+  <!-- Codemirror -->
+  <link rel="stylesheet" href="css/codemirror.css">
+  <link rel="stylesheet" href="css/base16-ocean.css">
+  <script src="js/codemirror.js"></script>
+  <script src="js/clj-mode.js"></script>
+  <!-- Fugue -->
   <link rel="stylesheet" href="css/main.css">
   <script src="js/main.js"></script>
 </head>
@@ -36,8 +42,9 @@
         <li><a href="/">SOURCE</a></href>
       </ul>
     </div>
-    <textarea class="panel" id="editor"></textarea>
-    <textarea class="panel" id="repl"></textarea>
+    <div class="panel" id="editor"></div>
+    <div class="panel" id="repl"></div>
   </div>
+  <script>fugue_app.core.main()</script>
 </body>
 </html>

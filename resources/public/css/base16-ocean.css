@@ -1,0 +1,20 @@
+/*
+    Base16 Ocean Light/Dark Theme
+    Author: Philip Del Vecchio
+
+    Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16)
+
+*/
+
+/* These are from dark */
+.cm-s-base16-ocean .CodeMirror-linenumber {color: #dfe1e8;}
+.cm-s-base16-ocean .CodeMirror-cursor {border-left: 1px solid #a7adba !important;}
+
+.cm-s-base16-ocean span.cm-comment {color: #65737e;}
+.cm-s-base16-ocean span.cm-atom {color: #d08770;}
+.cm-s-base16-ocean span.cm-number {color: #d08770;}
+
+.cm-s-base16-ocean span.cm-builtin {color: #8fa1b3;}
+.cm-s-base16-ocean span.cm-keyword {color: #b48ead;}
+
+.cm-s-base16-ocean span.cm-string {color: #a3be8c;}
