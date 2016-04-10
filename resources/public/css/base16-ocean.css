@@ -9,6 +9,8 @@
 /* These are from dark */
 .cm-s-base16-ocean .CodeMirror-linenumber {color: #dfe1e8;}
 .cm-s-base16-ocean .CodeMirror-cursor {border-left: 1px solid #a7adba !important;}
+.cm-s-base16-ocean .CodeMirror-matchingbracket {color: #a3be8c}
+.cm-s-base16-ocean .CodeMirror-nonmatchingbracket {color: #bf616a}
 
 .cm-s-base16-ocean span.cm-comment {color: #65737e;}
 .cm-s-base16-ocean span.cm-atom {color: #d08770;}
