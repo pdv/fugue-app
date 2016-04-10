@@ -1,6 +1,7 @@
 (ns fugue-app.plumbing
-  (:require [replumb.core :as replumb]
-            [fugue-app.console :as console]))
+  (:require [replumb.core :as replumb]))
+
+(comment
 
 (defn handle-result!
   [console result]
@@ -17,3 +18,5 @@
   [elt]
   (let [console (console/new-console elt)]
     (read-eval-print! console)))
+
+)
