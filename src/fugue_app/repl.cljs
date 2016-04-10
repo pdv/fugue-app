@@ -16,14 +16,12 @@
   (js/CodeMirror.Pos (.lastLine (.getDoc c))))
 
 (defn freeze [c]
-  (mark-range c start-pos (end-pos c) {:className "repl-buffer"
-                                       :readOnly true
-                                       :endStyle "repl-end"}))
-
-(defn mark-input [c]
-  (let [cur-pos (end-pos c)]
-    (mark-range c cur-pos cur-pos {:className "repl-input"
-                                   :inclusivityRight true})))
+  (.markText (.getDoc c)
+             start-pos
+             (end-pos c)
+             (js-obj "className" "repl-buffer"
+                     "readOnly" true))
+  c)
 
 (defn write! [c s]
   (.replaceRange c s (end-pos c))
@@ -55,7 +53,6 @@
   (let [pred #(when (= "repl-buffer" (.-className %)) (.find %))
         from (.-to (some pred (-> c .getDoc .getAllMarks)))
         to (end-pos c)]
-    (js/console.log from)
     (write-ln! c)
     (write-ln! c (.getRange (.getDoc c) from to))
     (prompt! c)))
