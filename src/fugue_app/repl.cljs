@@ -27,7 +27,7 @@
   (.replaceRange c s (end-pos c))
   c)
 
-(defn write-ln!
+(defn writeln!
   ([c] (write! c "\n"))
   ([c s] (write! c (str s "\n"))))
 
@@ -43,19 +43,22 @@
       freeze
       set-cursor-to-end))
 
-(defn read-eval-print!
-  [console user-input]
-  (replumb/read-eval-call () ()))
+(defn handle-result!
+  [c result]
+  (if (replumb/success? result)
+    (writeln! c (replumb/unwrap-result result))
+    (writeln! c (.-message (replumb/unwrap-result result))))
+  (prompt! c))
 
 (defn read-eval-print-prompt!
   "TODO: Check if unmatched parens"
   [c]
   (let [pred #(when (= "repl-buffer" (.-className %)) (.find %))
         from (.-to (some pred (-> c .getDoc .getAllMarks)))
-        to (end-pos c)]
-    (write-ln! c)
-    (write-ln! c (.getRange (.getDoc c) from to))
-    (prompt! c)))
+        to (end-pos c)
+        user-input (.getRange (.getDoc c) from to)]
+    (writeln! c)
+    (replumb/read-eval-call (partial handle-result! c) user-input)))
 
 (defn start-repl!
   "Starts a fugue repl in the input CodeMirror"

@@ -7,6 +7,6 @@
     :builds [{
       :source-paths ["src"]
       :compiler {
-        :output-to "resources/public/js/main.js"
+        :output-to "out/fugue-app.js"
         :optimizations :simple
         :pretty-print true}}]})
