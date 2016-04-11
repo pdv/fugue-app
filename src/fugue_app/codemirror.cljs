@@ -57,5 +57,9 @@
         from (.-to (some pred (-> cm .getDoc .getAllMarks)))]
     (.getRange (.getDoc cm) from (end-pos cm))))
 
+(defn set-option [cm option value]
+  (.setOption cm option value))
+
 (defn add-handler [cm key f]
-  (.setOption cm "extraKeys" (js-obj key f)))
+  (set-option cm "extraKeys" (js-obj key f)))
+

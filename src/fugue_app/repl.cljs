@@ -3,7 +3,10 @@
             [fugue-app.io :as io]
             [fugue-app.codemirror :as cm]))
 
-(defonce repl-opts (replumb/options :browser ["cljs" "js"] io/fetch-file!))
+(defonce repl-opts (merge (replumb/options :browser
+                                           ["cljs" "js"]
+                                           io/fetch-file!)
+                          {}))
 
 (defonce fugue-prompt "♪  ")
 
@@ -11,7 +14,7 @@
   [cm result]
   (if (replumb/success? result)
     (cm/writeln! cm (replumb/unwrap-result result))
-    (cm/writeln! cm (.-message (replumb/unwrap-result result)))))
+    (cm/writeln! cm (.-cause (replumb/unwrap-result result)))))
 
 (defn repp!
   "[r]eads s, [e]vals it, [p]rints the result to cm, [p]rompts"

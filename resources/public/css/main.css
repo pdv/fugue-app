@@ -2,17 +2,22 @@ body, div, h1, ul, textarea {
   margin: 0;
   padding: 0;
   border: 0;
-  font-family: Input Sans Narrow, Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  font-size: 12px;
-  color: #4f5b66;
 }
 
 body {
+  font-family: Input Sans Narrow, Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+  /* Light theme */
+  color: #4f5b66;
   background-color: #f8f8f8;
+  /* Dark theme
+  color: #2b303b;
+  background-color: #c0c5ce;
+  */
 }
 
 #container {
-  width: 960px;
+  width: 1200px;
   margin: 100px auto;
 }
 
@@ -31,7 +36,7 @@ body {
 }
 
 #repl {
-  width: 220px;
+  width: 460px;
   line-height: 1.6;
 }
 
