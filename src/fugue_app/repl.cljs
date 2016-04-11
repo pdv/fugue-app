@@ -6,12 +6,13 @@
 (defonce repl-opts (merge (replumb/options :browser
                                            ["cljs" "js"]
                                            io/fetch-file!)
-                          {}))
+                          {:context :statement}))
 
 (defonce fugue-prompt "♪  ")
 
 (defn print-result!
   [cm result]
+  (js/console.log (replumb/unwrap-result result))
   (if (replumb/success? result)
     (cm/writeln! cm (replumb/unwrap-result result))
     (cm/writeln! cm (.-cause (replumb/unwrap-result result)))))
@@ -39,6 +40,7 @@
   [cm]
   (set! *print-fn* (fn [& args] (apply (partial cm/writeln! cm) args)))
   (doto cm
-    (set! (.-log js/console) #(cm/writeln! cm %))
+    ; Hack for console output
+    (comment (set! (.-log js/console) #(cm/writeln! cm %)))
     (cm/add-handler "Enter" #(submit-handler cm))
     (repp! "()")))

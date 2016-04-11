@@ -51,14 +51,12 @@
 
 (defn play-toggle [editor repl elem]
   (html-toggle elem
-               "STOP"
-               #(repl/repp! repl "(stop!)")
-               "PLAY"
-               #(repl/repp! repl (cm/get-text editor))))
+               "PLAY" #(repl/repp! repl "(stop!)")
+               "STOP" #(repl/repp! repl (cm/get-text editor))))
 
 (defn create-toggle [id f]
   (let [elem (dom/getElement id)]
-    (events/listen elem events/EventType.CLICK #(f elem))))
+    (bind-onclick elem #(f elem))))
 
 (defn ^:export main []
   (let [editor (cm/append-codemirror! (dom/getElement "editor") cm-opts)
@@ -67,5 +65,6 @@
     (create-toggle "vim" (partial vim-toggle editor))
     (create-toggle "line-numbers" (partial ln-toggle editor))
     (create-toggle "theme" theme-toggle)
-    (create-toggle "play" (partial play-toggle editor repl-cm))))
+    (bind-onclick (dom/getElement "play")
+                  #(repl/repp! repl-cm (cm/get-text editor)))))
 
