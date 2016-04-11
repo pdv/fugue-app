@@ -37,6 +37,8 @@
 (defn start-repl!
   "Starts a fugue repl in the input CodeMirror"
   [cm]
+  (set! *print-fn* (fn [& args] (apply (partial cm/writeln! cm) args)))
   (doto cm
+    (set! (.-log js/console) #(cm/writeln! cm %))
     (cm/add-handler "Enter" #(submit-handler cm))
     (repp! "()")))
