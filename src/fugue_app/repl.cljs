@@ -40,7 +40,5 @@
   [cm]
   (set! *print-fn* (fn [& args] (apply (partial cm/writeln! cm) args)))
   (doto cm
-    ; Hack for console output
-    (comment (set! (.-log js/console) #(cm/writeln! cm %)))
     (cm/add-handler "Enter" #(submit-handler cm))
     (repp! "()")))

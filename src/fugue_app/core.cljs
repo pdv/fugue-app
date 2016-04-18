@@ -1,8 +1,14 @@
 (ns fugue-app.core
+  (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [goog.dom :as dom]
             [goog.events :as events]
+            [cljs.core.async :as async :refer [chan >!]]
             [fugue-app.repl :as repl]
             [fugue-app.codemirror :as cm]))
+
+(def test-async (chan))
+(go (>! test-async 5))
+
 
 (enable-console-print!)
 
