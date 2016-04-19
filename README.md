@@ -2,6 +2,13 @@
 
 A web/Chrome app to showcase fugue
 
+## Notes
+
+- Removed clojure deps from `cljs.core.async.impl.ioc-macros`
+
+
+
+
 ## Usage
 
 Open /resources/public/index.html in Chrome

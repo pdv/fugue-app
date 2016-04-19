@@ -3,9 +3,7 @@
             [fugue-app.io :as io]
             [fugue-app.codemirror :as cm]))
 
-(defonce repl-opts (merge (replumb/options :browser
-                                           ["cljs" "js"]
-                                           io/fetch-file!)
+(defonce repl-opts (merge (replumb/options :browser ["main.out"] io/fetch-file!)
                           {:context :statement}))
 
 (defonce fugue-prompt "♪  ")
@@ -41,4 +39,4 @@
   (set! *print-fn* (fn [& args] (apply (partial cm/writeln! cm) args)))
   (doto cm
     (cm/add-handler "Enter" #(submit-handler cm))
-    (repp! "()")))
+    (repp! "(println \";; Starting fugue...\")")))
