@@ -5,7 +5,7 @@ body, div, h1, ul, textarea {
 }
 
 body {
-  font-family: Input Sans Narrow, Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-family: Input Mono Narrow, Consolas, "Liberation Mono", Menlo, Courier, monospace;
   font-size: 12px;
   /* Light theme */
   color: #4f5b66;
@@ -27,6 +27,7 @@ body {
 }
 
 #controls {
+  font-family: Input Sans Narrow;
   width: 220px;
 }
 

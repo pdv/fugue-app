@@ -49,8 +49,8 @@
 
 (defn play-toggle [editor repl elem]
   (html-toggle elem
-               "PLAY" #(repl/repp! repl "(stop!)")
-               "STOP" #(repl/repp! repl (cm/get-text editor))))
+               "PLAY" #(repl/repc! repl "(stop!)")
+               "STOP" #(repl/repc! repl (cm/get-text editor))))
 
 (defn create-toggle [id f]
   (let [elem (dom/getElement id)]
@@ -64,4 +64,4 @@
     (create-toggle "line-numbers" (partial ln-toggle editor))
     (create-toggle "theme" theme-toggle)
     (bind-onclick (dom/getElement "play")
-                  #(repl/repp! repl-cm (cm/get-text editor)))))
+                  #(repl/repc! repl-cm (cm/get-text editor)))))
