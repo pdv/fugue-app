@@ -10,7 +10,8 @@
    :lineNumbers false
    :autoCloseBrackets true
    :matchBrackets true
-   :styleActiveLine true})
+   :styleActiveLine true
+   :lineWrapping true})
 
 (defn bind-onclick
   "Attaches the onclick of dom elem with id to f"

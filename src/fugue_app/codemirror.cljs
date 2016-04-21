@@ -5,8 +5,10 @@
   [elem options]
   (js/CodeMirror. elem (clj->js options)))
 
-(def read-only (js-obj "className" "repl-buffer"
-                       "readOnly" true))
+(def repl-buffer (js-obj "readOnly" true
+                         "className" "repl-buffer"))
+(def repl-prompt (js-obj "readOnly" true
+                         "className" "repl-prompt"))
 
 (def start-pos (js-obj "line" 0 "ch" 0))
 
@@ -21,11 +23,17 @@
     (.clear mark)))
 
 (defn freeze!
-  "Marks all text currently in the cm as read-only.
-   Returns TextMarker of frozen area."
+  "Adds .repl-buffer class to all existing text"
   [cm]
-  (clear-marks cm)
-  (.markText (.getDoc cm) start-pos (end-pos cm) read-only))
+  (.markText (.getDoc cm) start-pos (end-pos cm) repl-buffer))
+
+(defn format-prompt!
+  [cm]
+  (let [doc (.getDoc cm)
+        last-line (.lastLine doc)
+        from (js/CodeMirror.Pos last-line 0)
+        to (js/CodeMirror.Pos last-line 3)]
+    (.markText doc from to repl-prompt)))
 
 (defn write!
   "Appends string s to the body of cm.
@@ -46,14 +54,15 @@
   "Prompts the console and freezes it."
   [cm prompt-str]
   (doto cm
-    (write! prompt-str)
     freeze!
+    (write! prompt-str)
+    format-prompt!
     set-cursor-to-end!))
 
 (defn user-input
   "Returns the user input (non-buffer) from cm"
   [cm]
-  (let [pred #(when (= "repl-buffer" (.-className %)) (.find %))
+  (let [pred #(when (= "repl-prompt" (.-className %)) (.find %))
         from (.-to (some pred (-> cm .getDoc .getAllMarks)))]
     (.getRange (.getDoc cm) from (end-pos cm))))
 
