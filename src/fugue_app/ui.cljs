@@ -64,5 +64,8 @@
     (create-toggle "vim" (partial vim-toggle editor))
     (create-toggle "line-numbers" (partial ln-toggle editor))
     (create-toggle "theme" theme-toggle)
-    (bind-onclick (dom/getElement "play")
-                  #(repl/repc! repl-cm (cm/get-text editor)))))
+    (bind-onclick
+     (dom/getElement "play")
+     #(do
+        (cm/writeln! repl-cm)
+        (repl/repc! repl-cm (cm/get-text editor))))))

@@ -25,6 +25,7 @@
 (defn freeze!
   "Adds .repl-buffer class to all existing text"
   [cm]
+  (clear-marks cm)
   (.markText (.getDoc cm) start-pos (end-pos cm) repl-buffer))
 
 (defn format-prompt!
